@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 import { HttpClient } from '@angular/common/http'
 import { dataPokemons } from "./mookData"
 import { from, Observable } from 'rxjs';
-import { Pokemon, Generation } from '../utils/types'
+import { Pokemon, Generation, PokemonDetail } from '../utils/types'
 
 @Injectable({
 	providedIn: 'root',
@@ -28,6 +28,11 @@ export class PokemonService{
 	getPokemonList(offset: number, limit: number) {		
 		return this.http.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`) as Observable<{results:Pokemon[]}>	
 	}
+	
+	getPokemon(id: string) {		
+		return this.http.get(`https://pokeapi.co/api/v2/pokemon/${id}`) as Observable<PokemonDetail>	
+	}
+
 	getPokemonImageUri (id: number) {
 	  const imageId = ('00' + id).slice(-3); // para 1 => 001
 	  return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`;

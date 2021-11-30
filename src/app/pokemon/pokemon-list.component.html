@@ -32,7 +32,8 @@
 	<div class="pokemons example-viewport">
 		<div class="pokemon" 
 		[ngStyle]="{'background-color': getPokemonColor(pokemon)}"
-		*ngFor="let pokemon of pokemons">
+		*ngFor="let pokemon of pokemons"
+		(click)="goToPokemonDetails(pokemon)">
 			<img [src]="getImageUri(pokemon)" [alt]="pokemon.name" />
 			<p [ngStyle]="{'color': getTextColor(pokemon)}">{{pokemon.name}}</p>		
 		</div>

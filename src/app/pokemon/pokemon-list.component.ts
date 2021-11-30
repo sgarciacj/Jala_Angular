@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { pokemonColorMap } from './pokemonColorHash'
 import { Generation, Pokemon } from '../utils/types'
 import { PokemonService } from './pokemon.service'
+import { Router } from "@angular/router";
 
 @Component({
 	selector: 'pokemon-list',
@@ -19,7 +20,7 @@ export class PokemonListComponent implements OnInit {
 	offset: number = 0
 	limit: number = 20
 	generationSelected = ''
-	constructor(private pokemonService: PokemonService) { }
+	constructor(private pokemonService: PokemonService, private router: Router) { }
 	
 	ngOnInit(): void {
 		this.getPokemons();
@@ -101,5 +102,9 @@ export class PokemonListComponent implements OnInit {
 	onChange(generationUrl: string) {
 		this.generationSelected = generationUrl;
 		this.getPokemonsByGeneration(generationUrl);
+	}
+	goToPokemonDetails(pokemon: Pokemon) {
+		const id = this.getPokemonIdFromUrl(pokemon.url);
+		this.router.navigate([`/pokedex/${id}`])
 	}
 }
