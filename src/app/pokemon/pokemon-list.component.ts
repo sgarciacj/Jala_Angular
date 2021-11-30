@@ -88,6 +88,9 @@ export class PokemonListComponent implements OnInit {
 	searchPokemons() {
 		this.pokemons = this.pokemonList.filter(item => !item.name.indexOf(this.search));
 	}
+	updatePokemonLimit() {
+		this.getPokemons();
+	}
 	orderPokemonByName() {
 		return this.pokemons.sort(function(a, b) {
 			var pokemonA = a.name.toUpperCase();

@@ -13,6 +13,18 @@
 				<option *ngFor="let generation of generations" [value]="generation.url">{{generation.name}}</option>
 			</select>
 		</div>
+		<div>
+			<span>Offset:</span>
+			<input type="number" 
+				[(ngModel)]="offset"
+				(ngModelChange)="updatePokemonLimit()"
+				/>
+			<span>Limit:</span>
+			<input type="number" 
+				[(ngModel)]="limit"
+				(ngModelChange)="updatePokemonLimit()"
+				/>
+		</div>
 		<button *ngIf="pokemons.length" (click)="nextPokemons()">
 			Next
 		</button>
