@@ -1,27 +1,60 @@
-import { Component, OnInit } from "@angular/core"
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core"
 import { CommonModule } from '@angular/common';
-import { pokemonColorMap } from './pokemonColorhash'
-import { Pokemon } from '../utils/types'
+import { pokemonColorMap } from './pokemonColorHash'
+import { Generation, Pokemon } from '../utils/types'
 import { PokemonService } from './pokemon.service'
 
 @Component({
 	selector: 'pokemon-list',
 	templateUrl: './pokemon-list.component.html',
-	styleUrls: ['./pokemon-list.component.less']
-	
+	styleUrls: ['./pokemon-list.component.less'],
+	changeDetection: ChangeDetectionStrategy.Default	
 })
 
 export class PokemonListComponent implements OnInit {
 	pokemons: Pokemon[] = [];
+	generations: Generation[] = [];
 	private pokemonList: Pokemon [] = [];
 	search: string = '';
+	offset: number = 0
+	limit: number = 20
+	generationSelected = ''
 	constructor(private pokemonService: PokemonService) { }
 	
 	ngOnInit(): void {
-		this.pokemonList = this.pokemonService.getPokemonList();
-		this.pokemons = this.pokemonList;		
+		this.getPokemons();
+		this.getGenerations();
+		this.pokemonList = this.pokemons;
 	}
-		
+	
+	/*getPokemons(): void {
+		this.pokemonService.getPokemonList(this.offset, this.limit)
+		.then(data => this.pokemons = data)
+	}
+	async getPokemons(): Promise<void> {
+		this.pokemons = await this.pokemonService.getPokemonList(this.offset, this.limit)		
+	}
+	*/
+	getPokemons() {
+		this.pokemonService.getPokemonList(this.offset, this.limit)
+			.subscribe((data: {results: Pokemon[]}) => {
+				this.pokemons = data.results;
+				this.pokemonList = this.pokemons;
+				this.orderPokemonByName();
+			})
+	}
+	getGenerations() {
+		this.pokemonService.getPokemonGeneration()
+			.subscribe((data: {results: Generation[]}) => this.generations = data.results)
+	}
+	getPokemonsByGeneration(url: string) {
+		this.pokemonService.getPokemonsByGeneration(url)
+			.subscribe((data: {pokemon_species: Pokemon[]}) => {
+				this.pokemons = data.pokemon_species;
+				this.pokemonList = this.pokemons;
+			})
+	}
+
 	getImageUri(pokemon: Pokemon) {
 		return this.pokemonService.getPokemonImageUri(this.getPokemonIdFromUrl(pokemon.url)) // convierte en string
 	}
@@ -47,8 +80,23 @@ export class PokemonListComponent implements OnInit {
 				return 'white';
 		}
 	}
+	nextPokemons(): void {
+		this.offset += this.limit;
+		this.getPokemons();
+	}
 	
 	searchPokemons() {
 		this.pokemons = this.pokemonList.filter(item => !item.name.indexOf(this.search));
+	}
+	orderPokemonByName() {
+		return this.pokemons.sort(function(a, b) {
+			var pokemonA = a.name.toUpperCase();
+			var pokemonB = b.name.toUpperCase();
+			return (pokemonA < pokemonB) ? -1 : (pokemonA > pokemonB) ? 1 : 0;
+		});
+	}
+	onChange(generationUrl: string) {
+		this.generationSelected = generationUrl;
+		this.getPokemonsByGeneration(generationUrl);
 	}
 }

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { PokemonModule } from './pokemon/pokemon.module';
 

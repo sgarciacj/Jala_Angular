@@ -1,12 +1,23 @@
 <div>
 	<div>
-		<span>Search:</span>
-		<input type="text" 
-		[(ngModel)]="search"
-		(ngModelChange)="searchPokemons()"
-		/>
+		<div>
+			<span>Search:</span>
+			<input type="text" 
+			[(ngModel)]="search"
+			(ngModelChange)="searchPokemons()"
+			/>
+		</div>
+		<div>
+			<span>Choose a Generation:</span>
+			<select [ngModel]="generationSelected" (ngModelChange)="onChange($event)">
+				<option *ngFor="let generation of generations" [value]="generation.url">{{generation.name}}</option>
+			</select>
+		</div>
+		<button *ngIf="pokemons.length" (click)="nextPokemons()">
+			Next
+		</button>
 	</div>
-	<div class="pokemons">
+	<div class="pokemons example-viewport">
 		<div class="pokemon" 
 		[ngStyle]="{'background-color': getPokemonColor(pokemon)}"
 		*ngFor="let pokemon of pokemons">
@@ -15,8 +26,5 @@
 		</div>
 	</div>
 	
-	<div  class="not-found" *ngIf="!pokemons.length">
-		<h2>No Pokemons to display</h2>
-		<img src="https://i.gifer.com/8grL.gif">
-	</div>
+	<not-found *ngIf="!pokemons.length"></not-found>	
 </div>
