@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 	selector: 'pokemon-list',
 	templateUrl: './pokemon-list.component.html',
 	styleUrls: ['./pokemon-list.component.less'],
-	changeDetection: ChangeDetectionStrategy.Default	
+	changeDetection: ChangeDetectionStrategy.OnPush	
 })
 
 export class PokemonListComponent implements OnInit {
@@ -18,14 +18,13 @@ export class PokemonListComponent implements OnInit {
 	private pokemonList: Pokemon [] = [];
 	search: string = '';
 	offset: number = 0
-	limit: number = 20
+	limit: number = 14
 	generationSelected = ''
 	constructor(private pokemonService: PokemonService, private router: Router) { }
 	
 	ngOnInit(): void {
-		this.getPokemons();
 		this.getGenerations();
-		this.pokemonList = this.pokemons;
+		this.getPokemons();
 	}
 	
 	/*getPokemons(): void {
@@ -39,7 +38,7 @@ export class PokemonListComponent implements OnInit {
 	getPokemons() {
 		this.pokemonService.getPokemonList(this.offset, this.limit)
 			.subscribe((data: {results: Pokemon[]}) => {
-				this.pokemons = data.results;
+				this.pokemons = [...data.results];
 				this.pokemonList = this.pokemons;
 				this.orderPokemonByName();
 			})
@@ -51,8 +50,9 @@ export class PokemonListComponent implements OnInit {
 	getPokemonsByGeneration(url: string) {
 		this.pokemonService.getPokemonsByGeneration(url)
 			.subscribe((data: {pokemon_species: Pokemon[]}) => {
-				this.pokemons = data.pokemon_species;
+				this.pokemons = [...data.pokemon_species];
 				this.pokemonList = this.pokemons;
+				this.orderPokemonByName();
 			})
 	}
 
