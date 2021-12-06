@@ -43,4 +43,7 @@ export class PokemonService{
 	getPokemonsByGeneration(url: string){
 		return this.http.get(url) as Observable<{pokemon_species:Pokemon[]}>
 	}
+	getPokemonSpecies(id: string){
+		return this.http.get('https://pokeapi.co/api/v2/pokemon-species/'+id)
+	}
 }
