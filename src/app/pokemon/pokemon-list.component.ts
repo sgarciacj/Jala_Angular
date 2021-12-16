@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core"
 import { CommonModule } from '@angular/common';
 import { pokemonColorMap } from './pokemonColorHash'
-import { Generation, Pokemon } from '../utils/types'
+import { Pokemon } from '../utils/types'
 import { PokemonService } from './pokemon.service'
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { orderPokemonByName } from "./pokemon-helper";
 
 @Component({
 	selector: 'pokemon-list',
@@ -14,17 +15,16 @@ import { Router } from "@angular/router";
 
 export class PokemonListComponent implements OnInit {
 	pokemons: Pokemon[] = [];
-	generations: Generation[] = [];
 	private pokemonList: Pokemon [] = [];
 	search: string = '';
 	offset: number = 0
 	limit: number = 14
-	generationSelected = ''
-	constructor(private pokemonService: PokemonService, private router: Router) { }
+	constructor(private pokemonService: PokemonService, private router: ActivatedRoute) { }
 	
 	ngOnInit(): void {
-		this.getGenerations();
-		this.getPokemons();
+		this.pokemons = this.router.snapshot.data['pokemons'].results;
+		//orderPokemonByName(this.pokemons);
+		this.pokemonList = this.pokemons;
 	}
 	
 	/*getPokemons(): void {
@@ -39,48 +39,15 @@ export class PokemonListComponent implements OnInit {
 		this.pokemonService.getPokemonList(this.offset, this.limit)
 			.subscribe((data: {results: Pokemon[]}) => {
 				this.pokemons = [...data.results];
+				//orderPokemonByName(this.pokemons);
 				this.pokemonList = this.pokemons;
-				this.orderPokemonByName();
-			})
-	}
-	getGenerations() {
-		this.pokemonService.getPokemonGeneration()
-			.subscribe((data: {results: Generation[]}) => this.generations = data.results)
-	}
-	getPokemonsByGeneration(url: string) {
-		this.pokemonService.getPokemonsByGeneration(url)
-			.subscribe((data: {pokemon_species: Pokemon[]}) => {
-				this.pokemons = [...data.pokemon_species];
-				this.pokemonList = this.pokemons;
-				this.orderPokemonByName();
 			})
 	}
 
-	getImageUri(pokemon: Pokemon) {
-		return this.pokemonService.getPokemonImageUri(this.getPokemonIdFromUrl(pokemon.url)) // convierte en string
+	displayByGeneration(pokemons: Pokemon[]) {
+		this.pokemons = pokemons;
 	}
 	
-	getPokemonColor(pokemon: Pokemon) {
-		const id = this.getPokemonIdFromUrl(pokemon.url)
-		return pokemonColorMap[id]
-	}
-	
-	getPokemonIdFromUrl(url: string) {
-		const parseUrl = url.split('/'),
-		id = parseUrl[parseUrl.length - 2];
-		return +id;
-	}
-	
-	getTextColor(pokemon: Pokemon) {
-		const pokemonColor = this.getPokemonColor(pokemon)
-		switch (pokemonColor) {
-			case '#fbf6f6':
-			case '#f0f060e6':
-				return 'black';
-			default:
-				return 'white';
-		}
-	}
 	nextPokemons(): void {
 		this.offset += this.limit;
 		this.getPokemons();
@@ -91,20 +58,5 @@ export class PokemonListComponent implements OnInit {
 	}
 	updatePokemonLimit() {
 		this.getPokemons();
-	}
-	orderPokemonByName() {
-		return this.pokemons.sort(function(a, b) {
-			var pokemonA = a.name.toUpperCase();
-			var pokemonB = b.name.toUpperCase();
-			return (pokemonA < pokemonB) ? -1 : (pokemonA > pokemonB) ? 1 : 0;
-		});
-	}
-	onChange(generationUrl: string) {
-		this.generationSelected = generationUrl;
-		this.getPokemonsByGeneration(generationUrl);
-	}
-	goToPokemonDetails(pokemon: Pokemon) {
-		const id = this.getPokemonIdFromUrl(pokemon.url);
-		this.router.navigate([`/pokedex/${id}`])
 	}
 }

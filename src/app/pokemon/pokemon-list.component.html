@@ -1,47 +1,40 @@
 <div>
 	<div>
 		<div>
-			<span>Search:</span>
-			<input type="text" 
-			[(ngModel)]="search"
-			(ngModelChange)="searchPokemons()"
-			/>
+			<mat-form-field appearance="fill">
+				<mat-label>Search</mat-label>
+				<input matInput #input placeholder="Pokemon Start with..." [(ngModel)]="search"
+				(ngModelChange)="searchPokemons()">
+			</mat-form-field>
 		</div>
+		<pokemon-generation
+			(refreshPokemons)="displayByGeneration($event)">
+		</pokemon-generation>
+
 		<div>
-			<span>Choose a Generation:</span>
-			<select [ngModel]="generationSelected" (ngModelChange)="onChange($event)">
-				<option *ngFor="let generation of generations" [value]="generation.url">{{generation.name}}</option>
-			</select>
-		</div>
-		<div>
-			<span>Offset:</span>
-			<input type="number" 
-				[(ngModel)]="offset"
-				(ngModelChange)="updatePokemonLimit()"
-				/>
-			<span>Limit:</span>
-			<input type="number" 
+			<mat-form-field appearance="fill">
+				<mat-label>Offset</mat-label>
+				<input matInput #input type="number" placeholder="0" min="0"
+				[(ngModel)]="offset" (ngModelChange)="updatePokemonLimit()">
+			</mat-form-field>
+
+			<mat-form-field appearance="fill">
+				<mat-label>Limit</mat-label>
+				<input matInput #input type="number" placeholder="1" min="1"
 				[(ngModel)]="limit"
-				(ngModelChange)="updatePokemonLimit()"
-				/>
+				(ngModelChange)="updatePokemonLimit()">
+			</mat-form-field>
 		</div>
-		<button *ngIf="pokemons.length" (click)="nextPokemons()">
+		<button mat-raised-button color="primary" *ngIf="pokemons.length" (click)="nextPokemons()">
 			Next
 		</button>
 	</div>
-	Start PokemonName cdk-virtual-scroll-viewport (No working)
-	<cdk-virtual-scroll-viewport itemSize="20" class="list">
-		<div *cdkVirtualFor="let pokemon of pokemons" class="item">{{pokemon.name}}</div>
-	</cdk-virtual-scroll-viewport>
-	End PokemonName cdk-virtual-scroll-viewport (No working)
-	<div class="pokemons example-viewport">
-		<div class="pokemon" 
-		[ngStyle]="{'background-color': getPokemonColor(pokemon)}"
-		*ngFor="let pokemon of pokemons"
-		(click)="goToPokemonDetails(pokemon)">
-			<img [src]="getImageUri(pokemon)" [alt]="pokemon.name" />
-			<p [ngStyle]="{'color': getTextColor(pokemon)}">{{pokemon.name}}</p>		
-		</div>
+
+	<div class="pokemons">
+		<pokemon-card 
+		*ngFor="let pokemon of pokemons" 
+		[pokemon]=pokemon>			
+		</pokemon-card>
 	</div>
 	
 	<not-found *ngIf="!pokemons.length"></not-found>	

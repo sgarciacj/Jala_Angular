@@ -18,28 +18,37 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
 	id: string = '1';
 	pokemonDetail?: PokemonDetail; // Object could be undefined
 	pokemonSpecies?: any;
+	pokemonChain?: any;
 	gameDescriptions?: any;
 	language: string = 'en'
+	languages: string[] = []
+	chainUrl: string = ''
 
 
+	pokemonChainSubscription?: Subscription
 	pokemonSpeciesSubscription?: Subscription
 	pokemonDetailSubscription?: Subscription
 	// If there is no constructor, the class is not build
 	constructor(private pokemonService: PokemonService, 
-		private route: ActivatedRoute, 
-		private location: Location) {}
+		private location: Location, 
+		private route: ActivatedRoute) {}
 
 	ngOnInit(): void {
-		this.id = this.route.snapshot.paramMap.get('id') || '1';
-		
-		this.pokemonDetailSubscription = this.pokemonService.getPokemon(this.id)
-		.subscribe(pokemonDetail=> this.pokemonDetail = pokemonDetail);
-
+		this.pokemonDetail = this.route.snapshot.data['pokemon'];
+		this.id = `${this.pokemonDetail?.id}` || '1';
 		this.pokemonSpeciesSubscription = this.pokemonService.getPokemonSpecies(this.id)
 		.subscribe(pokemonSpecies=> {
 			this.pokemonSpecies = pokemonSpecies
 			this.gameDescriptions = this.filterDescriptionByLanguage(pokemonSpecies)
+
+			this.pokemonChainSubscription = this.pokemonService.getPokemonChain(this.pokemonSpecies.evolution_chain.url)
+			.subscribe(pokemonChain=> {
+				this.pokemonChain = pokemonChain
+				console.log(this.pokemonChain)
+			});
 		});
+
+		
 	}
 	refreshDescriptions(){
 		this.gameDescriptions = this.filterDescriptionByLanguage(this.pokemonSpecies);
@@ -67,6 +76,12 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
 	}
 	getImageUri() {
 		return this.pokemonService.getPokemonImageUri(+this.id)	// Integer
+	}
+	getImageUriById(url: string) {
+		let id = 1;
+		if(url != undefined)
+			id = Number(url.slice(0, -1).split("/").pop());
+		return this.pokemonService.getPokemonImageUri(id);
 	}
 	goBack() {
 		this.location.back();

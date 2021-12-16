@@ -1,14 +1,17 @@
-<button (click)="goBack()">Go Back</button>
 
+<button mat-raised-button color="primary" (click)="goBack()">
+    Go Back
+</button>
+
+<h3>Information</h3>
 <div class="pokemon-container">
-    <img [src]="getImageUri()" alt="pokemon">    
+    <img [src]="getImageUri()" alt="pokemon">
     <div>
         <div>
-            <p>Name: {{pokemonDetail?.name}}</p>
-            <p>Height: {{pokemonDetail?.height}}</p>
-            <p>Weight: {{pokemonDetail?.weight}}</p>
+            <p>Name: <b>{{pokemonDetail?.name}}</b></p>
+            <p>Height: <b>{{pokemonDetail?.height}}</b></p>
+            <p>Weight: <b>{{pokemonDetail?.weight}}</b></p>
         </div>
-
         <div class="pokemon-type">
             <div class="type-color" 
                 *ngFor="let type of pokemonDetail?.types"
@@ -20,8 +23,38 @@
 </div>
 
 <div>
-    <span>Enter Language: </span>
-    <input type="text" [(ngModel)]="language" (ngModelChange)="refreshDescriptions()" />
+    <h3>Stats</h3>
+    <table>
+        <tr *ngFor="let stat of pokemonDetail?.stats">
+            <td>{{stat.stat.name}} ({{stat.base_stat}})</td>
+            <td><mat-slider min="1" max="250" value="{{stat.base_stat}}" aria-disabled="true"></mat-slider></td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <h3>Evolutions</h3>
+    {{pokemonChain?.chain.species.name}}
+    <img [src]="getImageUriById(pokemonChain?.chain.species.url)" alt="">
+    <div *ngFor="let evolve of pokemonChain?.chain.evolves_to">
+        {{evolve.species.name}}
+        <img [src]="getImageUriById(evolve.species.url)" alt="">
+        <div *ngFor="let evolveIntern of evolve.evolves_to">
+            <img [src]="getImageUriById(evolveIntern.species.url)" alt="">
+            {{evolveIntern.species.name}}
+        </div> 
+    </div>
+    <div >
+        <div *ngFor="let evolve of pokemonChain?.chain.evolves_to">{{evolve.species.name}}</div>
+    </div>
+</div>
+
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter Language:</mat-label>
+        <input matInput #input placeholder="en" 
+            [(ngModel)]="language" (ngModelChange)="refreshDescriptions()">
+    </mat-form-field>
 </div> 
 
 <div *ngIf="!!pokemonSpecies">

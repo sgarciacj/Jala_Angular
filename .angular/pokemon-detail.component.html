@@ -1,0 +1,42 @@
+
+<button mat-raised-button color="primary" (click)="goBack()">
+    Go Back
+</button>
+
+<div class="pokemon-container">
+    <img [src]="getImageUri()" alt="pokemon">    
+    <div>
+        <div>
+            <p>Name: {{pokemonDetail?.name}}</p>
+            <p>Height: {{pokemonDetail?.height}}</p>
+            <p>Weight: {{pokemonDetail?.weight}}</p>
+        </div>
+
+        <div class="pokemon-type">
+            <div class="type-color" 
+                *ngFor="let type of pokemonDetail?.types"
+                [ngStyle]="{'background-color': getColorByType(type.type.name)}" >
+                <p>{{type.type.name}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <mat-slider min="1" max="250" step="1" *ngFor="let stat of pokemonDetail?.stats" value="{{stat.base_stat}}"></mat-slider>
+</div>
+
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter Language:</mat-label>
+        <input matInput #input placeholder="en" 
+            [(ngModel)]="language" (ngModelChange)="refreshDescriptions()">
+    </mat-form-field>
+</div> 
+
+<div *ngIf="!!pokemonSpecies">
+    <p>Pokemon Name by Language {{getNameByLanguage(pokemonSpecies?.names)}}</p>
+    <div class="game-description" *ngFor="let description of gameDescriptions">
+        <img [src]="getGameImage(description.version.name)" alt="">
+        <p>{{description.flavor_text}}</p>
+    </div>
+</div> 
