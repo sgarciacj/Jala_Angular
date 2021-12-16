@@ -18,7 +18,7 @@ export class PokemonListComponent implements OnInit {
 	private pokemonList: Pokemon [] = [];
 	search: string = '';
 	offset: number = 0
-	limit: number = 14
+	limit: number = 20
 	constructor(private pokemonService: PokemonService, private router: ActivatedRoute) { }
 	
 	ngOnInit(): void {
