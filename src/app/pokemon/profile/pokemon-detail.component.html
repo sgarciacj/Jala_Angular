@@ -26,7 +26,7 @@
         <table>
             <tr *ngFor="let stat of pokemonDetail?.stats">
                 <td>{{stat.stat.name}} ({{stat.base_stat}})</td>
-                <td><mat-slider min="1" max="250" value="{{stat.base_stat}}" aria-disabled="true"></mat-slider></td>
+                <td><mat-slider min="1" max="200" value="{{stat.base_stat}}" aria-disabled="true"></mat-slider></td>
             </tr>
         </table>
     </div>
@@ -45,7 +45,9 @@
         <div *ngFor="let evolve of pokemonChain?.chain.evolves_to">
             <mat-icon class="middle-arrow">arrow_downward</mat-icon>
             <div class="pokemon-evolution">
-                <button class="button-middle" mat-raised-button color="default" (click)="goToPokemonDetails(evolve.species)">{{evolve.species.name}}</button>
+                <button class="button-middle" mat-raised-button color="default" (click)="goToPokemonDetails(evolve.species)">
+                    {{evolve.species.name}} {{evolve.evolution_details != null ? ' - level: ' + evolve.evolution_details[0].min_level : ''}}
+                </button>
                 <div>
                     <img [src]="getImageUriById(evolve.species.url)" alt="">
                 </div>
@@ -54,7 +56,9 @@
             <div *ngFor="let evolveIntern of evolve.evolves_to">
                 <mat-icon class="middle-arrow">arrow_downward</mat-icon>
                 <div class="pokemon-evolution">
-                    <button  class="button-middle" mat-raised-button color="default" (click)="goToPokemonDetails(evolveIntern.species)">{{evolveIntern.species.name}}</button>
+                    <button  class="button-middle" mat-raised-button color="default" (click)="goToPokemonDetails(evolveIntern.species)">
+                        {{evolveIntern.species.name}} {{evolveIntern.evolution_details != null ? ' - level: ' + evolveIntern.evolution_details[0].min_level : ''}}
+                    </button>
                     <div>
                         <img [src]="getImageUriById(evolveIntern.species.url)" alt="">
                     </div>  
