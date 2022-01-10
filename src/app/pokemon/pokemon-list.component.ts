@@ -1,25 +1,29 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core"
+import { AfterViewInit, ChangeDetectionStrategy, Component, NgZone, OnInit, ViewChild } from "@angular/core"
 import { CommonModule } from '@angular/common';
 import { pokemonColorMap } from './pokemonColorHash'
 import { Pokemon } from '../utils/types'
 import { PokemonService } from './pokemon.service'
 import { ActivatedRoute, Router } from "@angular/router";
 import { orderPokemonByName } from "./pokemon-helper";
+import { CdkVirtualScrollViewport } from "@angular/cdk/scrolling";
+import { filter, map, pairwise, throttleTime } from "rxjs";
 
 @Component({
 	selector: 'pokemon-list',
 	templateUrl: './pokemon-list.component.html',
 	styleUrls: ['./pokemon-list.component.less'],
-	changeDetection: ChangeDetectionStrategy.OnPush	
+	changeDetection: ChangeDetectionStrategy.Default	
 })
 
-export class PokemonListComponent implements OnInit {
+export class PokemonListComponent implements OnInit, AfterViewInit {
 	pokemons: Pokemon[] = [];
 	private pokemonList: Pokemon [] = [];
 	search: string = '';
 	offset: number = 0
 	limit: number = 20
-	constructor(private pokemonService: PokemonService, private router: ActivatedRoute) { }
+	@ViewChild('scroller') scroller?: CdkVirtualScrollViewport
+
+	constructor(private pokemonService: PokemonService, private router: ActivatedRoute, private ngZone: NgZone) { }
 	
 	ngOnInit(): void {
 		this.pokemons = this.router.snapshot.data['pokemons'].results;
@@ -27,6 +31,21 @@ export class PokemonListComponent implements OnInit {
 		this.pokemonList = this.pokemons;
 	}
 	
+	ngAfterViewInit(): void {
+		this.scroller?.elementScrolled()
+		.pipe(
+			map(()=> this.scroller?.measureScrollOffset('bottom')),
+			pairwise(), // [1,2,3,4] => [1,2] [3,4]
+			filter(([y1,y2])=> {
+				return (y2! < y1! && y2! < 200)				
+			}),
+			throttleTime(200)
+			).subscribe(() => {
+				this.ngZone.run(() => {
+					this.getPokemons();
+				})
+		})
+	}
 	/*getPokemons(): void {
 		this.pokemonService.getPokemonList(this.offset, this.limit)
 		.then(data => this.pokemons = data)
@@ -36,9 +55,10 @@ export class PokemonListComponent implements OnInit {
 	}
 	*/
 	getPokemons() {
+		this.offset += this.limit;
 		this.pokemonService.getPokemonList(this.offset, this.limit)
 			.subscribe((data: {results: Pokemon[]}) => {
-				this.pokemons = [...data.results];
+				this.pokemons = [...this.pokemons, ...data.results];
 				//orderPokemonByName(this.pokemons);
 				this.pokemonList = this.pokemons;
 			})
@@ -49,7 +69,6 @@ export class PokemonListComponent implements OnInit {
 	}
 	
 	nextPokemons(): void {
-		this.offset += this.limit;
 		this.getPokemons();
 	}
 	

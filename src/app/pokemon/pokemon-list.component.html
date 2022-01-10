@@ -1,15 +1,15 @@
 <div>
 	<div>
-		<div>
-			<mat-form-field appearance="fill">
+		<div class="element-header">
+			<mat-form-field appearance="fill" >
 				<mat-label>Search</mat-label>
 				<input matInput #input placeholder="Pokemon Start with..." [(ngModel)]="search"
 				(ngModelChange)="searchPokemons()">
 			</mat-form-field>
+			<pokemon-generation
+				(refreshPokemons)="displayByGeneration($event)">
+			</pokemon-generation>
 		</div>
-		<pokemon-generation
-			(refreshPokemons)="displayByGeneration($event)">
-		</pokemon-generation>
 
 		<div>
 			<mat-form-field appearance="fill">
@@ -29,13 +29,11 @@
 			Next
 		</button>
 	</div>
-
-	<div class="pokemons">
-		<pokemon-card 
-		*ngFor="let pokemon of pokemons" 
-		[pokemon]=pokemon>			
-		</pokemon-card>
-	</div>
+	<cdk-virtual-scroll-viewport #scroller itemSize="20" class="virtual-content">
+		<div class="pokemons">
+			<pokemon-card *cdkVirtualFor="let pokemon of pokemons" [pokemon]=pokemon class="example-item"></pokemon-card>
+		</div>
+	</cdk-virtual-scroll-viewport>
 	
 	<not-found *ngIf="!pokemons.length"></not-found>	
 </div>

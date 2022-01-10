@@ -20,7 +20,7 @@ const routes: Routes = [
 			pokemons: PokemonsResolverService
 		}
 	},
-	{ path: '', redirectTo: '/pokedex', pathMatch: 'full' } // Localhost/pokedex - path base
+	{ path: '', redirectTo: 'pokedex', pathMatch: 'full' } // Localhost/pokedex - path base
 ];
 
 @NgModule({
