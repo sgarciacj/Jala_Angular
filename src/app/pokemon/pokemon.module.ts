@@ -9,14 +9,28 @@ import { HttpClientModule } from '@angular/common/http'
 import { PokemonRoutingModule } from './pokemon-routing.module';
 import { PokemonCardComponent } from './pokemon-card.component';
 import { PokemonGenerationComponent } from './pokemon-generation.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuComponent } from 'src/common/menu/menu.component';
+import { HeaderComponent } from 'src/common/header/header.component';
+// Material
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatMenuModule } from '@angular/material/menu'
+import { StyleManagerService } from 'src/common/header/style-manager.service';
+
+const materialModule = [
+  MatToolbarModule,
+  MatMenuModule,
+  MatButtonModule,
+  MatIconModule,
+  MatSelectModule
+]
 
 @NgModule({
   declarations: [
@@ -24,30 +38,26 @@ import { MatIconModule } from '@angular/material/icon';
     NotFoundComponent,
     PokemonDetailComponent,
     PokemonCardComponent,
-    PokemonGenerationComponent
+    PokemonGenerationComponent,
+    MenuComponent,
+    HeaderComponent
   ],
   imports: [
-    BrowserModule,
-    ScrollingModule,
-    MatSelectModule,
 	  FormsModule,
 	  HttpClientModule,
     MatSliderModule,
-    MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
     MatRippleModule,
     BrowserAnimationsModule,
-    MatIconModule
-    
+    ScrollingModule,
+    ...materialModule
   ],
    // Available in app and could be used in other parts of the app
   exports: [
-    PokemonListComponent,
-    PokemonDetailComponent,
-    PokemonRoutingModule
+    PokemonRoutingModule,
   ],
-  providers: [],
+  providers: [ StyleManagerService ],
   bootstrap: []
 })
 export class PokemonModule { }

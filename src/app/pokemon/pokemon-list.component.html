@@ -1,4 +1,5 @@
-<div>
+<header> </header>
+<div class="mat-drawer-container">
 	<div>
 		<div class="element-header">
 			<mat-form-field appearance="fill" >
@@ -25,9 +26,6 @@
 				(ngModelChange)="updatePokemonLimit()">
 			</mat-form-field>
 		</div>
-		<button mat-raised-button color="primary" *ngIf="pokemons.length" (click)="nextPokemons()">
-			Next
-		</button>
 	</div>
 	<cdk-virtual-scroll-viewport #scroller itemSize="20" class="virtual-content">
 		<div class="pokemons">
