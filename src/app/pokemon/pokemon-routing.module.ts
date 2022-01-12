@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Router, RouterModule, Routes } from "@angular/router";
+import { PokemonAddComponent } from "./add/pokemon-add.component";
 import { PokemonListComponent } from "./pokemon-list.component";
 import { PokemonResolverService } from "./pokemon-resolver.service";
 import { PokemonsResolverService } from "./pokemons-resolver.service";
@@ -19,6 +20,10 @@ const routes: Routes = [
 		resolve: {
 			pokemons: PokemonsResolverService
 		}
+	},
+	{ 
+		path: 'add-pokemon', 
+		component: PokemonAddComponent,
 	},
 	{ path: '', redirectTo: 'pokedex', pathMatch: 'full' } // Localhost/pokedex - path base
 ];

@@ -9,9 +9,9 @@
 			</mat-form-field>
 			<pokemon-generation
 				(refreshPokemons)="displayByGeneration($event)">
-			</pokemon-generation>
+			</pokemon-generation>			
 		</div>
-
+		
 		<div>
 			<mat-form-field appearance="fill">
 				<mat-label>Offset</mat-label>
@@ -25,6 +25,10 @@
 				[(ngModel)]="limit"
 				(ngModelChange)="updatePokemonLimit()">
 			</mat-form-field>
+			
+			<button mat-raised-button color="primary" (click)="addPokemon()">
+				Add Pokemon
+			</button>
 		</div>
 	</div>
 	<cdk-virtual-scroll-viewport #scroller itemSize="20" class="virtual-content">

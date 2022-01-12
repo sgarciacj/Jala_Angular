@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { BrowserModule } from '@angular/platform-browser';
 import { PokemonListComponent } from './pokemon-list.component';
@@ -23,6 +23,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatMenuModule } from '@angular/material/menu'
 import { StyleManagerService } from 'src/common/header/style-manager.service';
+import { PokemonAddComponent } from './add/pokemon-add.component';
 
 const materialModule = [
   MatToolbarModule,
@@ -39,6 +40,7 @@ const materialModule = [
     PokemonDetailComponent,
     PokemonCardComponent,
     PokemonGenerationComponent,
+    PokemonAddComponent,
     MenuComponent,
     HeaderComponent
   ],
@@ -51,11 +53,12 @@ const materialModule = [
     MatRippleModule,
     BrowserAnimationsModule,
     ScrollingModule,
+    ReactiveFormsModule,
     ...materialModule
   ],
    // Available in app and could be used in other parts of the app
   exports: [
-    PokemonRoutingModule,
+    PokemonRoutingModule
   ],
   providers: [ StyleManagerService ],
   bootstrap: []

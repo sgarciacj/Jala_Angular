@@ -23,10 +23,10 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
 	limit: number = 20
 	@ViewChild('scroller') scroller?: CdkVirtualScrollViewport
 
-	constructor(private pokemonService: PokemonService, private router: ActivatedRoute, private ngZone: NgZone) { }
+	constructor(private pokemonService: PokemonService, private activateRouter: ActivatedRoute, private router: Router, private ngZone: NgZone) { }
 	
 	ngOnInit(): void {
-		this.pokemons = this.router.snapshot.data['pokemons'].results;
+		this.pokemons = this.activateRouter.snapshot.data['pokemons'].results;
 		//orderPokemonByName(this.pokemons);
 		this.pokemonList = this.pokemons;
 	}
@@ -62,6 +62,10 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
 				//orderPokemonByName(this.pokemons);
 				this.pokemonList = this.pokemons;
 			})
+	}
+
+	addPokemon(){
+		this.router.navigate(['add-pokemon'])
 	}
 
 	displayByGeneration(pokemons: Pokemon[]) {
