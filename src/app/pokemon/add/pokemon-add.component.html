@@ -1,5 +1,6 @@
 <!--label for="name">Name:</label>
 <input type="text" [formControl]="name"/-->
+<div class="mat-drawer-container">
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 <h2>Basic Information</h2>
 <div>
@@ -68,3 +69,4 @@
 </form>
 
 <p>Form Status: {{profileForm.status}}</p>
+</div>

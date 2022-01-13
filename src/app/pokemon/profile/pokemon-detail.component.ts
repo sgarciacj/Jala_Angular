@@ -36,7 +36,7 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.pokemonDetail = this.route.snapshot.data['pokemon'];
-		this.id = `${this.pokemonDetail?.id}` || '1';
+		this.id = `${this.pokemonDetail?.id}` ;
 		this.pokemonSpeciesSubscription = this.pokemonService.getPokemonSpecies(this.id)
 		.subscribe(pokemonSpecies=> {
 			this.pokemonSpecies = pokemonSpecies

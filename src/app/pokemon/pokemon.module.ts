@@ -58,7 +58,9 @@ const materialModule = [
   ],
    // Available in app and could be used in other parts of the app
   exports: [
-    PokemonRoutingModule
+    PokemonRoutingModule,
+    MenuComponent,
+    HeaderComponent
   ],
   providers: [ StyleManagerService ],
   bootstrap: []
