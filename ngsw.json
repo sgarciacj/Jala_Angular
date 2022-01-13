@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
   "timestamp": 1640125853621,
-  "index": "/PokeAngular/index.html",
+  "index": "/Jala_Angular/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,13 +11,13 @@
         "ignoreVary": true
       },
       "urls": [
-        "/PokeAngular/favicon.ico",
-        "/PokeAngular/index.html",
-        "/PokeAngular/main.38a19da8955d6a784542.js",
-        "/PokeAngular/manifest.webmanifest",
-        "/PokeAngular/polyfills.76e6c636f334ce363f81.js",
-        "/PokeAngular/runtime.7f908133ea1d562ab47f.js",
-        "/PokeAngular/styles.ef303618c0c3c205f96b.css"
+        "/Jala_Angular/favicon.ico",
+        "/Jala_Angular/index.html",
+        "/Jala_Angular/main.38a19da8955d6a784542.js",
+        "/Jala_Angular/manifest.webmanifest",
+        "/Jala_Angular/polyfills.76e6c636f334ce363f81.js",
+        "/Jala_Angular/runtime.7f908133ea1d562ab47f.js",
+        "/Jala_Angular/styles.ef303618c0c3c205f96b.css"
       ],
       "patterns": []
     },
@@ -29,45 +29,45 @@
         "ignoreVary": true
       },
       "urls": [
-        "/PokeAngular/assets/deeppurple-amber.css",
-        "/PokeAngular/assets/icons/icon-128x128.png",
-        "/PokeAngular/assets/icons/icon-144x144.png",
-        "/PokeAngular/assets/icons/icon-152x152.png",
-        "/PokeAngular/assets/icons/icon-192x192.png",
-        "/PokeAngular/assets/icons/icon-384x384.png",
-        "/PokeAngular/assets/icons/icon-512x512.png",
-        "/PokeAngular/assets/icons/icon-72x72.png",
-        "/PokeAngular/assets/icons/icon-96x96.png",
-        "/PokeAngular/assets/indigo-pink.css",
-        "/PokeAngular/assets/not-found.png",
-        "/PokeAngular/assets/pink-bluegrey.css",
-        "/PokeAngular/assets/purple-green.css"
+        "/Jala_Angular/assets/deeppurple-amber.css",
+        "/Jala_Angular/assets/icons/icon-128x128.png",
+        "/Jala_Angular/assets/icons/icon-144x144.png",
+        "/Jala_Angular/assets/icons/icon-152x152.png",
+        "/Jala_Angular/assets/icons/icon-192x192.png",
+        "/Jala_Angular/assets/icons/icon-384x384.png",
+        "/Jala_Angular/assets/icons/icon-512x512.png",
+        "/Jala_Angular/assets/icons/icon-72x72.png",
+        "/Jala_Angular/assets/icons/icon-96x96.png",
+        "/Jala_Angular/assets/indigo-pink.css",
+        "/Jala_Angular/assets/not-found.png",
+        "/Jala_Angular/assets/pink-bluegrey.css",
+        "/Jala_Angular/assets/purple-green.css"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/PokeAngular/assets/deeppurple-amber.css": "ab6d858ec629d4322c2ad5ae08c33b211ec73c8f",
-    "/PokeAngular/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
-    "/PokeAngular/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
-    "/PokeAngular/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
-    "/PokeAngular/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
-    "/PokeAngular/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
-    "/PokeAngular/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
-    "/PokeAngular/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
-    "/PokeAngular/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
-    "/PokeAngular/assets/indigo-pink.css": "9c9a7745826ec6929f056ce37c542b8ae826f7e2",
-    "/PokeAngular/assets/not-found.png": "84052d6f2fd0e2e5f9e36afd519b6e3cb9074f04",
-    "/PokeAngular/assets/pink-bluegrey.css": "ea3332513a373a500b71a983ad65d78d034a55ed",
-    "/PokeAngular/assets/purple-green.css": "a062b28272d4f81029651a64f225f04d411be992",
-    "/PokeAngular/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/PokeAngular/index.html": "9c5ae0f34f673292dad3e286fc0b0b76216ff10d",
-    "/PokeAngular/main.38a19da8955d6a784542.js": "00db5e2c297aecf968ab83c913016b7c090e9f5a",
-    "/PokeAngular/manifest.webmanifest": "c2dc3ee7947c7ede7664dbec802a2bfeed4f37f7",
-    "/PokeAngular/polyfills.76e6c636f334ce363f81.js": "2d20984c5bb1acdc78415e12cfbe7f8c663905d7",
-    "/PokeAngular/runtime.7f908133ea1d562ab47f.js": "cfd8e3d42743c8f756e651bd578a033b4c07a7fa",
-    "/PokeAngular/styles.ef303618c0c3c205f96b.css": "5d6f755ae88f2b17490219c9d7d89970dd49cc73"
+    "/Jala_Angular/assets/deeppurple-amber.css": "ab6d858ec629d4322c2ad5ae08c33b211ec73c8f",
+    "/Jala_Angular/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/Jala_Angular/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/Jala_Angular/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/Jala_Angular/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/Jala_Angular/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/Jala_Angular/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/Jala_Angular/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/Jala_Angular/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/Jala_Angular/assets/indigo-pink.css": "9c9a7745826ec6929f056ce37c542b8ae826f7e2",
+    "/Jala_Angular/assets/not-found.png": "84052d6f2fd0e2e5f9e36afd519b6e3cb9074f04",
+    "/Jala_Angular/assets/pink-bluegrey.css": "ea3332513a373a500b71a983ad65d78d034a55ed",
+    "/Jala_Angular/assets/purple-green.css": "a062b28272d4f81029651a64f225f04d411be992",
+    "/Jala_Angular/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/Jala_Angular/index.html": "9c5ae0f34f673292dad3e286fc0b0b76216ff10d",
+    "/Jala_Angular/main.38a19da8955d6a784542.js": "00db5e2c297aecf968ab83c913016b7c090e9f5a",
+    "/Jala_Angular/manifest.webmanifest": "c2dc3ee7947c7ede7664dbec802a2bfeed4f37f7",
+    "/Jala_Angular/polyfills.76e6c636f334ce363f81.js": "2d20984c5bb1acdc78415e12cfbe7f8c663905d7",
+    "/Jala_Angular/runtime.7f908133ea1d562ab47f.js": "cfd8e3d42743c8f756e651bd578a033b4c07a7fa",
+    "/Jala_Angular/styles.ef303618c0c3c205f96b.css": "5d6f755ae88f2b17490219c9d7d89970dd49cc73"
   },
   "navigationUrls": [
     {
