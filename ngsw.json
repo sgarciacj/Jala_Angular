@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1642039150953,
+  "timestamp": 1640125853621,
   "index": "/PokeAngular/index.html",
   "assetGroups": [
     {
@@ -13,11 +13,11 @@
       "urls": [
         "/PokeAngular/favicon.ico",
         "/PokeAngular/index.html",
-        "/PokeAngular/main.867b9ec40b82cad1.js",
+        "/PokeAngular/main.38a19da8955d6a784542.js",
         "/PokeAngular/manifest.webmanifest",
-        "/PokeAngular/polyfills.0bea41e70009c072.js",
-        "/PokeAngular/runtime.43727e5fe7854787.js",
-        "/PokeAngular/styles.55a3fc1cabc19262.css"
+        "/PokeAngular/polyfills.76e6c636f334ce363f81.js",
+        "/PokeAngular/runtime.7f908133ea1d562ab47f.js",
+        "/PokeAngular/styles.ef303618c0c3c205f96b.css"
       ],
       "patterns": []
     },
@@ -48,7 +48,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/PokeAngular/assets/deeppurple-amber.css": "e0d93917a8ff207dabb8807242a62f79b0832941",
+    "/PokeAngular/assets/deeppurple-amber.css": "ab6d858ec629d4322c2ad5ae08c33b211ec73c8f",
     "/PokeAngular/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
     "/PokeAngular/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
     "/PokeAngular/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
@@ -57,17 +57,17 @@
     "/PokeAngular/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
     "/PokeAngular/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/PokeAngular/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
-    "/PokeAngular/assets/indigo-pink.css": "7e34810a9cc4c077a0d47e5fe9609b1a32967cfc",
+    "/PokeAngular/assets/indigo-pink.css": "9c9a7745826ec6929f056ce37c542b8ae826f7e2",
     "/PokeAngular/assets/not-found.png": "84052d6f2fd0e2e5f9e36afd519b6e3cb9074f04",
-    "/PokeAngular/assets/pink-bluegrey.css": "9cb00428c4018ab3e45e188363598358cd871904",
-    "/PokeAngular/assets/purple-green.css": "ced47d004131aed31b460a81ec6c60b3bab597e5",
+    "/PokeAngular/assets/pink-bluegrey.css": "ea3332513a373a500b71a983ad65d78d034a55ed",
+    "/PokeAngular/assets/purple-green.css": "a062b28272d4f81029651a64f225f04d411be992",
     "/PokeAngular/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/PokeAngular/index.html": "4ffb9cd246c3144e66cc90d5d1d8a08fc82b21bb",
-    "/PokeAngular/main.867b9ec40b82cad1.js": "4b5996519b9c2c228d26dd567aa299eb55790a3b",
-    "/PokeAngular/manifest.webmanifest": "2b3cb9698d8f8a7914f26f5388087dd00d870ac9",
-    "/PokeAngular/polyfills.0bea41e70009c072.js": "7ab8bd461eae6a805f016c446ff438abef251838",
-    "/PokeAngular/runtime.43727e5fe7854787.js": "b1339109f5e1ac98121a23506a8dc81597ae192e",
-    "/PokeAngular/styles.55a3fc1cabc19262.css": "a7f72450273228bcdcfe38be0c1a38ff4a427170"
+    "/PokeAngular/index.html": "9c5ae0f34f673292dad3e286fc0b0b76216ff10d",
+    "/PokeAngular/main.38a19da8955d6a784542.js": "00db5e2c297aecf968ab83c913016b7c090e9f5a",
+    "/PokeAngular/manifest.webmanifest": "c2dc3ee7947c7ede7664dbec802a2bfeed4f37f7",
+    "/PokeAngular/polyfills.76e6c636f334ce363f81.js": "2d20984c5bb1acdc78415e12cfbe7f8c663905d7",
+    "/PokeAngular/runtime.7f908133ea1d562ab47f.js": "cfd8e3d42743c8f756e651bd578a033b4c07a7fa",
+    "/PokeAngular/styles.ef303618c0c3c205f96b.css": "5d6f755ae88f2b17490219c9d7d89970dd49cc73"
   },
   "navigationUrls": [
     {
