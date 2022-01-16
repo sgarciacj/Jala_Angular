@@ -15,6 +15,15 @@ export function orderPokemonByName(pokemons: Pokemon[]) {
     });
 }
 
+export function deleteDuplicates(pokemons: Pokemon[]) {
+    const seen = new Set();
+    return pokemons.filter(el => {
+        const duplicate = seen.has(el.name);
+        seen.add(el.name);
+        return !duplicate;
+      });
+}
+
 export function forbiddenNameValidator(regex: RegExp): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
         const forbidden = regex.test(control.value);

@@ -4,7 +4,7 @@ import { pokemonColorMap } from './pokemonColorHash'
 import { Pokemon } from '../utils/types'
 import { PokemonService } from './pokemon.service'
 import { ActivatedRoute, Router } from "@angular/router";
-import { orderPokemonByName } from "./pokemon-helper";
+import { deleteDuplicates, orderPokemonByName } from "./pokemon-helper";
 import { CdkVirtualScrollViewport } from "@angular/cdk/scrolling";
 import { filter, map, pairwise, throttleTime } from "rxjs";
 
@@ -26,8 +26,7 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
 	constructor(private pokemonService: PokemonService, private activateRouter: ActivatedRoute, private router: Router, private ngZone: NgZone) { }
 	
 	ngOnInit(): void {
-		this.pokemons = this.activateRouter.snapshot.data['pokemons'].results;
-		//orderPokemonByName(this.pokemons);
+		this.pokemons = orderPokemonByName(this.activateRouter.snapshot.data['pokemons'].results);
 		this.pokemonList = this.pokemons;
 	}
 	
@@ -58,8 +57,7 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
 		this.offset += this.limit;
 		this.pokemonService.getPokemonList(this.offset, this.limit)
 			.subscribe((data: {results: Pokemon[]}) => {
-				this.pokemons = [...this.pokemons, ...data.results];
-				//orderPokemonByName(this.pokemons);
+				this.pokemons = orderPokemonByName(deleteDuplicates([...this.pokemons, ...data.results]));
 				this.pokemonList = this.pokemons;
 			})
 	}
@@ -69,7 +67,7 @@ export class PokemonListComponent implements OnInit, AfterViewInit {
 	}
 
 	displayByGeneration(pokemons: Pokemon[]) {
-		this.pokemons = pokemons;
+		this.pokemons = orderPokemonByName(pokemons);
 	}
 	
 	nextPokemons(): void {

@@ -45,11 +45,11 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
 			this.pokemonChainSubscription = this.pokemonService.getPokemonChain(this.pokemonSpecies.evolution_chain.url)
 			.subscribe(pokemonChain=> {
 				this.pokemonChain = pokemonChain
-				console.log(this.pokemonChain)
 			});
-		});
-
-		
+		});		
+	}
+	formatLabel(value: number) {
+		return value;
 	}
 	refreshDescriptions(){
 		this.gameDescriptions = this.filterDescriptionByLanguage(this.pokemonSpecies);

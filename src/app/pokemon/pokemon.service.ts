@@ -50,7 +50,6 @@ export class PokemonService{
 		return this.http.get('https://pokeapi.co/api/v2/language') as Observable<{results:{name: string, url: string}[]}>
 	}
 	getPokemonChain(url: string){
-		console.log('URL:',url)
 		return this.http.get(url) as Observable<{results:{name: string, url: string}[]}>
 	}
 }

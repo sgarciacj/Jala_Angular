@@ -1,5 +1,4 @@
-
-<button mat-raised-button color="primary" (click)="goBack()">
+<button mat-raised-button color="primary" class="pokemon-evolution" (click)="goBack()">
     Go Back
 </button>
 
@@ -26,7 +25,7 @@
         <table>
             <tr *ngFor="let stat of pokemonDetail?.stats">
                 <td>{{stat.stat.name}} ({{stat.base_stat}})</td>
-                <td><mat-slider min="1" max="200" value="{{stat.base_stat}}" aria-disabled="true"></mat-slider></td>
+                <td><mat-slider thumbLabel [displayWith]="formatLabel" min="1" max="250" value="{{stat.base_stat}}" style="pointer-events: none;"></mat-slider></td>
             </tr>
         </table>
     </div>
@@ -38,7 +37,7 @@
         <div class="pokemon-evolution">
             <button class="button-middle" mat-raised-button color="accent" (click)="goToPokemonDetails(pokemonChain?.chain.species)">{{pokemonChain?.chain.species.name}}</button>
             <div>
-                <img [src]="getImageUriById(pokemonChain?.chain.species.url)" alt="" >
+                <img [src]="getImageUriById(pokemonChain?.chain.species.url)" (click)="goToPokemonDetails(pokemonChain?.chain.species)">
             </div>
         </div>
 
@@ -46,10 +45,18 @@
             <mat-icon class="middle-arrow">arrow_downward</mat-icon>
             <div class="pokemon-evolution">
                 <button class="button-middle" mat-raised-button color="accent" (click)="goToPokemonDetails(evolve.species)">
-                    {{evolve.species.name}} {{evolve.evolution_details != null ? ' - level: ' + evolve.evolution_details[0].min_level : ''}}
+                    {{evolve.species.name}}
                 </button>
+                <ul>
+                    <li><b>Item:</b> {{evolve.evolution_details && evolve.evolution_details[0].item ? evolve.evolution_details[0].item.name : 'N/A'}}</li>
+                    <li><b>Trigger:</b> {{evolve.evolution_details && evolve.evolution_details[0].trigger ? evolve.evolution_details[0].trigger.name : 'N/A'}}</li>
+                    <li><b>Minimum Level:</b> {{evolve.evolution_details && evolve.evolution_details[0].min_level ? evolve.evolution_details[0].min_level : 'N/A'}}</li>
+                    <li><b>Minimum Affection:</b> {{evolve.evolution_details && evolve.evolution_details[0].min_affection ? evolve.evolution_details[0].min_affection : 'N/A'}}</li>
+                    <li><b>Minimum Beauty:</b> {{evolve.evolution_details && evolve.evolution_details[0].min_beauty ? evolve.evolution_details[0].min_beauty : 'N/A'}}</li>
+                    <li><b>Minimum Hapiness:</b> {{evolve.evolution_details && evolve.evolution_details[0].min_happiness ? evolve.evolution_details[0].min_happiness : 'N/A'}}</li>
+                </ul>
                 <div>
-                    <img [src]="getImageUriById(evolve.species.url)" alt="">
+                    <img [src]="getImageUriById(evolve.species.url)"  (click)="goToPokemonDetails(evolve.species)">
                 </div>
             </div>
 
@@ -57,10 +64,18 @@
                 <mat-icon class="middle-arrow">arrow_downward</mat-icon>
                 <div class="pokemon-evolution">
                     <button  class="button-middle" mat-raised-button color="accent" (click)="goToPokemonDetails(evolveIntern.species)">
-                        {{evolveIntern.species.name}} {{evolveIntern.evolution_details != null ? ' - level: ' + evolveIntern.evolution_details[0].min_level : ''}}
+                        {{evolveIntern.species.name}}
                     </button>
+                    <ul>
+                        <li><b>Item:</b> {{evolveIntern.evolution_details && evolveIntern.evolution_details[0].item ? evolveIntern.evolution_details[0].item.name : 'N/A'}}</li>
+                        <li><b>Trigger:</b> {{evolveIntern.evolution_details && evolveIntern.evolution_details[0].trigger ? evolveIntern.evolution_details[0].trigger.name : 'N/A'}}</li>
+                        <li><b>Minimum Level:</b> {{evolveIntern.evolution_details && evolveIntern.evolution_details[0].min_level ? evolveIntern.evolution_details[0].min_level : 'N/A'}}</li>
+                        <li><b>Minimum Affection:</b> {{evolveIntern.evolution_details && evolveIntern.evolution_details[0].min_affection ? evolveIntern.evolution_details[0].min_affection : 'N/A'}}</li>
+                        <li><b>Minimum Beauty:</b> {{evolveIntern.evolution_details && evolveIntern.evolution_details[0].min_beauty ? evolveIntern.evolution_details[0].min_beauty : 'N/A'}}</li>
+                        <li><b>Minimum Hapiness:</b> {{evolveIntern.evolution_details && evolveIntern.evolution_details[0].min_happiness ? evolveIntern.evolution_details[0].min_happiness : 'N/A'}}</li>
+                    </ul>
                     <div>
-                        <img [src]="getImageUriById(evolveIntern.species.url)" alt="">
+                        <img [src]="getImageUriById(evolveIntern.species.url)" (click)="goToPokemonDetails(evolveIntern.species)">
                     </div>  
                 </div>
             </div> 
